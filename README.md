@@ -1,2 +1,2 @@
 # portfolio-react
-remaking Website_Prototpe in React
+remaking Website_Prototype in React
