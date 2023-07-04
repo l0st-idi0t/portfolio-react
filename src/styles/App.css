@@ -1,8 +1,179 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-image: url(../images/background.jpg);
-    background-size: contain;
-    overflow: hidden;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url(../images/background.jpg);
+  background-size: contain;
+  overflow: hidden;
+}
+
+.folder {
+  /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    */
+  position: fixed;
+  width: auto;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  padding: 0px 10px 20px 10px;
+  border-radius: 5px;
+}
+
+.folder img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.folder:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.inner:hover {
+  cursor: pointer;
+  background-color: rgba(188, 187, 187, 0.2);
+}
+
+.inner.selected {
+  background-color: rgba(187, 187, 187, 0.2);
+}
+
+#portfolio-folder {
+  top: 127px;
+  left: 224px;
+}
+
+#rickroll {
+  top: 100px;
+  left: 80px;
+}
+
+.selected {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.selection-box {
+  position: absolute;
+  pointer-events: none;
+  z-index: 999;
+  background-color: rgba(202, 238, 255, 0.3);
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.info {
+  visibility: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 50%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 8px;
+  background-color: rgb(240, 240, 240);
+  z-index: 9999;
+  transition: transform 0.4s ease-in-out;
+}
+
+#header {
+  width: 100%;
+  height: 10%;
+  background-color: rgb(145, 145, 145);
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 5px 3px rgb(124, 124, 124);
+}
+
+#header input[type="button"] {
+  max-width: 30px;
+  max-height: 30px;
+  height: 50%;
+  aspect-ratio: 1/1;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgb(212, 21, 21);
+  cursor: pointer;
+  margin: 10px 0px 0px 10px;
+}
+
+.widget {
+  position: fixed;
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, 0%);
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  color: #fff;
+  width: 20%;
+}
+
+#weather-widget {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(77, 172, 255, 0.4);
+  border-radius: 50px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  animation: wide 0.8s ease-out;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#weather-widget img {
+  opacity: 0;
+  max-width: 35px;
+  max-height: 35px;
+  height: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 0px 2px 3px rgb(0, 0, 0, 0.2);
+}
+
+#weather-widget p {
+  opacity: 0;
+  margin-left: 2%;
+}
+
+#clock {
+  margin-top: 10px;
+}
+
+@keyframes wide {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
