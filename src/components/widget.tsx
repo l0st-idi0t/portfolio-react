@@ -15,6 +15,41 @@ const WeatherClockWidget: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [currentTime, setCurrentTime] = useState(new Date());
 
+  const displayWeatherData = useCallback(() => {
+    if (weatherData) {
+      const weatherWidget = document.getElementById("weather-widget");
+      const weatherIcon = document.getElementById("weather-icon");
+      const weatherTemp = document.getElementById("weather-temp");
+      const clock = document.getElementById("clock");
+
+      if (weatherWidget && weatherIcon && weatherTemp) {
+        setTimeout(() => {
+          weatherIcon.style.animation = "fadein 1s ease-in-out forwards";
+          weatherTemp.style.animation = "fadein 1s ease-in-out forwards";
+          clock!.style.display = "block";
+        }, 300);
+      }
+    }
+  }, [weatherData]);
+
+  const getWeatherData = useCallback(
+    (lat: number, lon: number) => {
+      const apiKey = "7b29be37390b450d9e743140230704";
+      const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=no`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data: WeatherData) => {
+          setWeatherData(data);
+          displayWeatherData();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    [displayWeatherData]
+  );
+
   const getLocation = useCallback(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -30,7 +65,7 @@ const WeatherClockWidget: React.FC = () => {
     } else {
       alert("GeoLocation is not supported by your browser.");
     }
-  }, []);
+  }, [getWeatherData]);
 
   useEffect(() => {
     // get weather data when component mounts
@@ -44,20 +79,6 @@ const WeatherClockWidget: React.FC = () => {
     // clean up interval on component unmount
     return () => clearInterval(interval);
   }, [getLocation]);
-
-  const getWeatherData = (lat: number, lon: number) => {
-    const apiKey = "7b29be37390b450d9e743140230704";
-    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=no`;
-
-    fetch(url)
-      .then((response) => response.json())
-      .then((data: WeatherData) => {
-        setWeatherData(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const formatAMPM = (date: Date) => {
     let hours = date.getHours();
