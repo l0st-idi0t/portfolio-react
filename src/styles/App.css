@@ -124,6 +124,7 @@ video {
   font-size: 20px;
   color: #fff;
   width: 20%;
+  max-width: 250px;
 }
 
 #weather-widget {
@@ -132,17 +133,16 @@ video {
   background-color: rgba(77, 172, 255, 0.4);
   border-radius: 50px;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   animation: wide 0.8s ease-out;
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
 }
 
 #weather-widget img {
   opacity: 0;
-  max-width: 35px;
-  max-height: 35px;
+  max-width: 40px;
+  max-height: 40px;
   height: 100%;
   aspect-ratio: 1/1;
   object-fit: contain;
